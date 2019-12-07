@@ -40,8 +40,6 @@ def MinMaxScaler(data):
 
     ''' Min Max Normalization
 
-
-
     Parameters
 
     ----------
@@ -94,7 +92,7 @@ learning_rate = 0.01
 
 num_epochs = 500
 
-input_size = 6    # ¿if we change the imput size, can we add more parameters for the guess by simply adding one collumn to the csv file ?
+input_size = 5    # ¿if we change the imput size, can we add more parameters for the guess by simply adding one collumn to the csv file ?
                 ############################################################################################
 hidden_size = 5 # ¿We are cofused about hidden_size and num_layers? ¿is hidden size num of hidden layers?
 
@@ -108,7 +106,7 @@ num_layers = 1  # number of layers in RNN
 
 # Open, High, Low, Volume, Close
 
-xy = np.loadtxt('data-02-stock_daily.csv', delimiter=',')
+xy = np.loadtxt('MSFT.csv', delimiter=',')
 
 xy = xy[::-1]  # reverse order (chronically ordered)
 
