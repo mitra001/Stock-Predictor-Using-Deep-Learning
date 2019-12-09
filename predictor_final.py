@@ -87,12 +87,12 @@ def predictor():
 
     learning_rate = 0.01
     num_epochs = 500
-    input_size = input_size_g  # ¿if we change the imput size, can we add more parameters for the guess by simply adding one collumn to the csv file ?
+    input_size = input_size_g  
     print(input_size)
-    hidden_size = 5  # ¿We are cofused about hidden_size and num_layers? ¿is hidden size num of hidden layers?
+    hidden_size = 5  
     num_classes = 1
-    timesteps = seq_length = 7  # ¿Does tis min the number of h, but what is x in each timestep? Go to the forth loop.
-    num_layers = 1  # number of layers in RNN
+    timesteps = seq_length = 7  
+    num_layers = 1  
 
     # Open, High, Low, Volume, Close
 
@@ -110,7 +110,7 @@ def predictor():
     dataX = []
     dataY = []
 
-    for i in range(0, len(y) - seq_length):  # What is the relation between timestamp and the way the data is structured?
+    for i in range(0, len(y) - seq_length):  
 
         _x = x[i:i + seq_length]
         print(_x.shape)
@@ -120,7 +120,7 @@ def predictor():
         dataY.append(_y)
 
     # train/test split
-    train_size = int(len(dataY) * 0.7)  # ¿why is the train size multiplyed by 0.7? ¿What does this means?
+    train_size = int(len(dataY) * 0.7)  
     test_size = len(dataY) - train_size
     trainX = torch.Tensor(np.array(dataX[0:train_size]))
     trainX = Variable(trainX)
@@ -135,9 +135,9 @@ def predictor():
     lstm = LSTM(num_classes, input_size, hidden_size, num_layers, seq_length)
 
     # Set loss and optimizer function
-    criterion = torch.nn.MSELoss()  # mean-squared error for regression, loss function   ¿what else apart from mse?
-    optimizer = torch.optim.Adam(lstm.parameters(), lr=learning_rate)  # optimization algorithm  ¿what else apart from this?
-    # try: cross entropy loss with SGD
+    criterion = torch.nn.MSELoss()  # mean-squared error for regression, loss function   
+    optimizer = torch.optim.Adam(lstm.parameters(), lr=learning_rate)  # optimization algorithm  
+ 
 
     # Train the model
     for epoch in range(num_epochs):
@@ -145,7 +145,7 @@ def predictor():
         optimizer.zero_grad()
         # obtain the loss function
         loss = criterion(outputs, trainY)
-        loss.backward()  # ¿Does this means backward propagation? ¿If we change for foward is going to do foward propagation?
+        loss.backward()  
         optimizer.step()
         print("Epoch: %d, loss: %1.5f" % (epoch, loss.item()))
 
